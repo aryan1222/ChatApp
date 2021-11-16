@@ -7,10 +7,11 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+// const dotenv=require('dotenv'); 
+// dotenv.config();
 
 // set static folder 
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // on connection
 io.on('connection', (socket) => {    
@@ -60,9 +61,7 @@ io.on('connection', (socket) => {
     // msg displayed to all
 })
 
-
-
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
